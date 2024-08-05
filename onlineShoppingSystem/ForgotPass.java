@@ -46,6 +46,7 @@ public class ForgotPass extends JFrame {
 	 */
 	public ForgotPass() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		setSize(380, 480);
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel();

@@ -17,6 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
+
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class Dashboard extends JFrame {
 
@@ -44,6 +50,7 @@ public class Dashboard extends JFrame {
 	 */
 	public Dashboard() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		ImageIcon icon = new ImageIcon("logoxo.jpg");
 		setIconImage(icon.getImage());
 		setSize(1000, 700);
@@ -77,6 +84,8 @@ public class Dashboard extends JFrame {
 				}
 			}
 		});
+		
+		this.setLocationRelativeTo(null);
 		panel.setBackground(new Color(15, 230, 80));
 		panel.setBounds(-10, 0, 996, 99);
 		contentPane.add(panel);
@@ -85,7 +94,7 @@ public class Dashboard extends JFrame {
 		JLabel lblNewLabel = new JLabel("ONLINE SHOPPING");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(10, 10, 310, 81);
+		lblNewLabel.setBounds(64, 10, 310, 81);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("abeltesfa198@gmail.com");
@@ -175,10 +184,10 @@ public class Dashboard extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Total Catagories: ");
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_2.setBounds(10, 77, 176, 41);
+		lblNewLabel_2.setBounds(10, 77, 159, 41);
 		panel_3.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_5 = new JLabel("Toral Products");
+		JLabel lblNewLabel_5 = new JLabel("Toral Products:");
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_5.setBounds(10, 128, 149, 38);
 		panel_3.add(lblNewLabel_5);
@@ -202,6 +211,83 @@ public class Dashboard extends JFrame {
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_9.setBounds(421, 128, 122, 38);
 		panel_3.add(lblNewLabel_9);
-		this.setLocationRelativeTo(null);
+		
+		
+		// this is a test //
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(68, 292, 604, 205);
+		panel_2.add(panel_4);
+		panel_4.setLayout(null);
+
+		JLabel lblNewLabel_18 = new JLabel("Current items");
+		lblNewLabel_18.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_18.setBounds(225, 10, 242, 24);
+		panel_4.add(lblNewLabel_18);
+
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(10, 45, 584, 150); // Correct bounds to match the panel's size
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+		panel_4.add(scrollPane);
+
+		JLabel lblNewLabel_19 = new JLabel("0");
+		lblNewLabel_19.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_19.setBounds(155, 135, 30, 21);
+		panel_3.add(lblNewLabel_19);
+
+		JButton btnNewButton = new JButton("List items");
+		btnNewButton.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	panel_4.setVisible(true);
+		        DataBase db = new DataBase();
+		        int numberOfitems = 0;
+		        
+		        // Clear existing text before adding new content
+		        textArea.setText("");
+
+		        for (String item : db.items) {
+		            textArea.append(item + "\n");
+		            numberOfitems++;
+		        }
+
+		        String numberitems = String.valueOf(numberOfitems);
+		        lblNewLabel_19.setText(numberitems);
+		    }
+		});
+
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(10, 232, 192, 21);
+		panel_3.add(btnNewButton);
+		
+		JButton btnListPrices = new JButton("List Prices");
+		btnListPrices.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 panel_4.setVisible(true);
+			        DataBase db = new DataBase();
+			        int numberOfitems = 0;
+			        
+			        // Clear existing text before adding new content
+			        textArea.setText("");
+
+			        for (int price : db.price) {
+			            textArea.append(price + " ETB" + "\n");
+			            numberOfitems++;
+			        }
+
+			        String numberitems = String.valueOf(numberOfitems);
+			        lblNewLabel_19.setText(numberitems);
+			}
+		});
+		btnListPrices.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnListPrices.setBounds(351, 235, 192, 21);
+		panel_3.add(btnListPrices);
+		
+		
 	}
 }

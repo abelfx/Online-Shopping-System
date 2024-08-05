@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -100,11 +101,7 @@ public class UserLogin extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_4 = new JLabel("Login");
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_4.setBounds(115, 24, 60, 28);
-		panel_1.add(lblNewLabel_4);
+		
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -130,6 +127,12 @@ public class UserLogin extends JFrame {
 		lblNewLabel_6.setBounds(28, 137, 103, 13);
 		panel_1.add(lblNewLabel_6);
 		
+		JLabel lblNewLabel_4 = new JLabel("Login");
+		lblNewLabel_4.setForeground(new Color(255, 255, 255));
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNewLabel_4.setBounds(115, 24, 60, 28);
+		panel_1.add(lblNewLabel_4);
+		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("User");
 		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
 		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 13));
@@ -154,9 +157,22 @@ public class UserLogin extends JFrame {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Dashboard board = new Dashboard();
-				board.setVisible(true);
-				setVisible(false);
+				
+				if(textField.getText().equals("abeltesfa198@gmail.com") && textField_1.getText().equals("Ab12el34te56sf78@")) {
+					if(rdbtnNewRadioButton_2.isEnabled()) {
+						Dashboard board = new Dashboard();
+						board.setVisible(true);
+						setVisible(false);
+					}else {
+						JOptionPane.showMessageDialog(null, "Currenly only Admin works");
+					}
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "Either Email or Password incorrect\nTry Again");
+					textField.setText("");
+					textField_1.setText("");
+				}
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -186,6 +202,15 @@ public class UserLogin extends JFrame {
 		
 		
 		JLabel lblNewLabel_9 = new JLabel("Sign Up");
+		lblNewLabel_9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SignUp signup = new SignUp();
+				signup.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
 		lblNewLabel_9.setForeground(new Color(189, 189, 189));
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblNewLabel_9.setBounds(115, 337, 60, 18);
