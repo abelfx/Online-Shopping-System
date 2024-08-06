@@ -9,7 +9,7 @@ public class DataBase {
 	static int[] price;
 	static String[] email;
 	static String[] password;
-	boolean insert;
+	Connection con;
 	
 	public DataBase() {
 		try {
@@ -17,7 +17,7 @@ public class DataBase {
 			SignUp up = new SignUp();
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
 					"root", "Ab12el34te56sf78@");
 			System.out.println("connection successfull\n");
 			
@@ -26,20 +26,6 @@ public class DataBase {
 			
 			Statement state_1 = con.createStatement();
 			ResultSet set_1 = state_1.executeQuery("select Email, Password from users");	
-			
-			String sql = "INSERT INTO users (userID, Email, Password) VALUES (?, ?, ?)";
-			
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			 
-			String userID = String.valueOf(up.id);
-			
-			 pstmt.setString(1, userID );
-	         pstmt.setString(2, up.email);
-	         pstmt.setString(3, up.password);
-	         
-	         int rowsAffected = pstmt.executeUpdate();
-			
-	        System.out.println("rowsAffected: " + rowsAffected);	
 			
 			// array to store the data
 			
@@ -62,11 +48,7 @@ public class DataBase {
 				email[index_1] = set_1.getString("Email");
 				password[index_1] = set_1.getString("Password");
 				index_1++;
-			}
-			
-			System.out.println(Arrays.toString(password));
-			
-			
+			}		
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("connection failed!" + e);
@@ -75,13 +57,6 @@ public class DataBase {
 		}
 	}
 	
-	public void insert() {
-		
-	}
-	
-	public void ConnectDB() {
-		
-	}
 	
 	public static void main(String[] args) {
 		new DataBase();

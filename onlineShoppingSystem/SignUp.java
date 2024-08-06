@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class SignUp extends JFrame {
@@ -167,6 +170,32 @@ public class SignUp extends JFrame {
 				String SecurityQ = textField_5.getText();
 				String Answer = textField_6.getText();
 				
+				DataBase db = new DataBase();
+				
+				try {
+					
+					db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
+							"root", "Ab12el34te56sf78@");
+					String sql = "INSERT INTO users (userID, Email, Password) VALUES (?, ?, ?)";
+					
+					PreparedStatement pstmt = db.con.prepareStatement(sql);
+					 
+					String userID = String.valueOf(id);
+					
+					 pstmt.setString(1, userID );
+			         pstmt.setString(2, email);
+			         pstmt.setString(3, password);
+			         
+			         int rowsAffected = pstmt.executeUpdate();
+			         System.out.println("rowsAffected: " + rowsAffected);	
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				;
+				
+		        
 				// for now only inserting ID, Email and Password
 				
 //				db.user = id;
