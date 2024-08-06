@@ -157,21 +157,32 @@ public class UserLogin extends JFrame {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(textField.getText().equals("abeltesfa198@gmail.com") && textField_1.getText().equals("Ab12el34te56sf78@")) {
-					if(rdbtnNewRadioButton_2.isEnabled()) {
-						Dashboard board = new Dashboard();
-						board.setVisible(true);
-						setVisible(false);
-					}else {
-						JOptionPane.showMessageDialog(null, "Currenly only Admin works");
+				DataBase db = new DataBase();
+				if(rdbtnNewRadioButton_2.isEnabled()) {
+					String InputEmail = textField.getText();
+					String InputPass = textField_1.getText();
+					
+					for(int i = 0; i < db.email.length; i++) {
+						if(InputEmail.equals(db.email[i]) && InputPass.equals(db.password[i])) {
+							Dashboard board = new Dashboard();
+							board.setVisible(true);
+							setVisible(false);
+							break;
+					}else if(i == db.email.length - 1){
+						JOptionPane.showMessageDialog(null, "Either Email or Password incorrect\nTry Again");
+						textField.setText("");
+						textField_1.setText("");
+					} else {
+						continue;
 					}
 					
+						
+					}
+						
 				}else {
-					JOptionPane.showMessageDialog(null, "Either Email or Password incorrect\nTry Again");
-					textField.setText("");
-					textField_1.setText("");
+					JOptionPane.showMessageDialog(null, "Currenly only Admin works");
 				}
+				
 				
 			}
 		});

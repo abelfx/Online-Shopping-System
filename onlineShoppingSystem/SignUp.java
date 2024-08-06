@@ -29,6 +29,11 @@ public class SignUp extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	
+	int id;
+	String email;
+	String password;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -147,8 +152,27 @@ public class SignUp extends JFrame {
 		panel.add(textField_6);
 		
 		JButton btnNewButton = new JButton("Register");
+		
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// textField entries
+				id = Integer.parseInt(textField.getText());
+				String username = textField_1.getText();
+				email = textField_2.getText();
+				password = textField_3.getText();
+				int phone = Integer.parseInt(textField_4.getText());
+				String SecurityQ = textField_5.getText();
+				String Answer = textField_6.getText();
+				
+				// for now only inserting ID, Email and Password
+				
+//				db.user = id;
+//				db.Email = email;
+//				db.Password = password;
+				
 				JOptionPane.showMessageDialog(null, "Registration Complete");
 				UserLogin login = new UserLogin();
 				login.setVisible(true);
