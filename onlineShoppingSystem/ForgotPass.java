@@ -45,6 +45,7 @@ public class ForgotPass extends JFrame {
 	 * Create the frame.
 	 */
 	public ForgotPass() {
+		setTitle("Online Shopping System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(380, 480);

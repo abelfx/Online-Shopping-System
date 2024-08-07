@@ -26,6 +26,7 @@ public class UserLogin extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -46,6 +47,7 @@ public class UserLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public UserLogin() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(470,450);
 		setResizable(false);

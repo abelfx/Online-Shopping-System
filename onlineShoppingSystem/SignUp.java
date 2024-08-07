@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.DriverManager;
@@ -28,6 +30,7 @@ public class SignUp extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private ImageIcon icon;
 
 	/**
 	 * Launch the application.
@@ -54,6 +57,9 @@ public class SignUp extends JFrame {
 	 * Create the frame.
 	 */
 	public SignUp() {
+		icon = new ImageIcon("logoxo.jpg");
+		this.setIconImage(icon.getImage());
+		setTitle("Online Shopping System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400,700);
 		setResizable(false);

@@ -49,6 +49,7 @@ public class Dashboard extends JFrame {
 	 * Create the frame.
 	 */
 	public Dashboard() {
+		setTitle("Online Shopping System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		ImageIcon icon = new ImageIcon("logoxo.jpg");
@@ -64,26 +65,6 @@ public class Dashboard extends JFrame {
 		String[] array = { "YES", "NO", "CANCEL"};
 		
 		JPanel panel = new JPanel();
-		panel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				UserLogin login = new UserLogin();
-				int choice = JOptionPane.showOptionDialog( 
-			            null, 
-			            "Do you want to Log Out?", 
-			            "Log Out?", 
-			            JOptionPane.YES_NO_CANCEL_OPTION,
-			            JOptionPane.QUESTION_MESSAGE, 
-			            null,
-			            array,
-			            array[2]);
-				if(choice == JOptionPane.YES_OPTION) {
-					JOptionPane.showMessageDialog(null, "Logged Out");
-					login.setVisible(true);
-					setVisible(false);	
-				}
-			}
-		});
 		
 		this.setLocationRelativeTo(null);
 		panel.setBackground(new Color(15, 230, 80));
@@ -104,6 +85,26 @@ public class Dashboard extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_17 = new JLabel("Log Out");
+		lblNewLabel_17.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				UserLogin login = new UserLogin();
+				int choice = JOptionPane.showOptionDialog( 
+			            null, 
+			            "Do you want to Log Out?", 
+			            "Log Out?", 
+			            JOptionPane.YES_NO_CANCEL_OPTION,
+			            JOptionPane.QUESTION_MESSAGE, 
+			            null,
+			            array,
+			            array[2]);
+				if(choice == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, "Logged Out");
+					login.setVisible(true);
+					setVisible(false);	
+				}
+			}
+		});
 		lblNewLabel_17.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_17.setForeground(new Color(255, 255, 255));
 		lblNewLabel_17.setBounds(865, 41, 92, 22);
@@ -130,6 +131,14 @@ public class Dashboard extends JFrame {
 		panel_1.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel("Manage Products");
+		lblNewLabel_11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageProducts manage = new ManageProducts();
+				manage.setVisible(true);
+				setVisible(false);
+			}
+		});
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_11.setForeground(new Color(180, 180, 180));
 		lblNewLabel_11.setBounds(35, 148, 186, 39);
