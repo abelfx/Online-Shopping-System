@@ -18,6 +18,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class SignUp extends JFrame {
 
@@ -28,7 +30,6 @@ public class SignUp extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTextField textField_6;
 	private ImageIcon icon;
 
@@ -144,10 +145,15 @@ public class SignUp extends JFrame {
 		lblNewLabel_6.setBounds(10, 431, 132, 31);
 		panel.add(lblNewLabel_6);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(10, 461, 335, 31);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {
+				"what is your favourite food?", 
+				"what year were you born?", 
+				"what is your pets name?", 
+				"what school did you attend?"}));
+		comboBox.setMaximumRowCount(4);
+		comboBox.setBounds(10, 462, 332, 31);
+		panel.add(comboBox);
 		
 		JLabel lblNewLabel_6_1 = new JLabel("Answer");
 		lblNewLabel_6_1.setForeground(new Color(255, 255, 255));
@@ -173,7 +179,8 @@ public class SignUp extends JFrame {
 				email = textField_2.getText();
 				password = textField_3.getText();
 				int phone = Integer.parseInt(textField_4.getText());
-				String SecurityQ = textField_5.getText();
+				String SecurityQ = (String) comboBox.getSelectedItem();
+				System.out.println(SecurityQ);
 				String Answer = textField_6.getText();
 				
 				DataBase db = new DataBase();
@@ -182,7 +189,7 @@ public class SignUp extends JFrame {
 					
 					db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
 							"root", "Ab12el34te56sf78@");
-					String sql = "INSERT INTO users (userID, Email, Password) VALUES (?, ?, ?)";
+					String sql = "INSERT INTO users (userID, Email, Password, SecurityQ, S_Answer) VALUES (?, ?, ?, ?, ?)";
 					
 					PreparedStatement pstmt = db.con.prepareStatement(sql);
 					 
@@ -191,6 +198,8 @@ public class SignUp extends JFrame {
 					 pstmt.setString(1, userID );
 			         pstmt.setString(2, email);
 			         pstmt.setString(3, password);
+			         pstmt.setString(4,  SecurityQ);
+			         pstmt.setString(5,  Answer);
 			         
 			         int rowsAffected = pstmt.executeUpdate();
 			         System.out.println("rowsAffected: " + rowsAffected);	
@@ -231,5 +240,7 @@ public class SignUp extends JFrame {
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton_1.setBounds(202, 591, 124, 30);
 		panel.add(btnNewButton_1);
+		
+	
 	}
 }

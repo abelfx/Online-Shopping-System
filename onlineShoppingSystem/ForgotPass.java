@@ -14,14 +14,18 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ForgotPass extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 
@@ -88,10 +92,11 @@ public class ForgotPass extends JFrame {
 		lblNewLabel_2.setBounds(28, 139, 149, 22);
 		panel.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(24, 166, 280, 32);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"what is your favourite food? ", "what year were you born?", "what is your pets name?", "what school did you attend?"}));
+		comboBox.setMaximumRowCount(4);
+		comboBox.setBounds(28, 166, 276, 32);
+		panel.add(comboBox);
 		
 		JLabel lblNewLabel_3 = new JLabel("Answer");
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -111,13 +116,64 @@ public class ForgotPass extends JFrame {
 		panel.add(lblNewLabel_4);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(28, 321, 269, 32);
+		textField_3.setBounds(28, 321, 280, 32);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DataBase db = new DataBase();
+				int length = db.email.length;
+				String email = "";
+				int i = 0;
+				boolean found = false;
+				while( i < length) {
+					if(textField.getText().equals(db.email[i])) {
+						email = db.email[i];
+						found = true;
+						break;
+					}
+					i++;
+				}
+				boolean layer2 = false;
+				
+				if(found) {
+					int j = 0;
+					String SQ = (String) comboBox.getSelectedItem();
+					String Answer = textField_2.getText();
+					while(j < length) {
+						if(SQ.equals(db.securityQ[j]) && Answer.equals(db.Answer[j])) {
+							layer2 = true;
+							break;
+						}
+						j++;
+					}
+					
+				}
+				if(layer2) {
+					String newPassword = textField_3.getText();
+					try {
+						db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
+								"root", "Ab12el34te56sf78@");
+						
+						String sql = "Update users Set Password = newPassword where Email = email";
+						
+						PreparedStatement pstmt = db.con.prepareStatement(sql);
+						
+						 pstmt.setString(1, newPassword); 
+				         pstmt.setString(2, email); 
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					 
+					
+				}
+				
+				
+				
 				JOptionPane.showMessageDialog(null,  "Pasword Changed");
 			}
 		});
@@ -131,6 +187,8 @@ public class ForgotPass extends JFrame {
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton_1.setBounds(169, 384, 124, 39);
 		panel.add(btnNewButton_1);
+		
+		
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			@Override

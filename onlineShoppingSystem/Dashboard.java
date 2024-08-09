@@ -218,7 +218,7 @@ public class Dashboard extends JFrame {
 		
 		JLabel lblNewLabel_9 = new JLabel("Total Sales:");
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_9.setBounds(421, 128, 122, 38);
+		lblNewLabel_9.setBounds(387, 128, 104, 38);
 		panel_3.add(lblNewLabel_9);
 		
 		
@@ -228,75 +228,37 @@ public class Dashboard extends JFrame {
 		panel_2.add(panel_4);
 		panel_4.setLayout(null);
 
-		JLabel lblNewLabel_18 = new JLabel("Current items");
-		lblNewLabel_18.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_18.setBounds(225, 10, 242, 24);
-		panel_4.add(lblNewLabel_18);
-
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
+		textArea.setVisible(false);
+		textArea.setEditable(false);
 
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(10, 45, 584, 150); // Correct bounds to match the panel's size
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setVisible(false);
 
 		panel_4.add(scrollPane);
-
-		JLabel lblNewLabel_19 = new JLabel("0");
+		
+		DataBase db = new DataBase();
+		String P_total = String.valueOf(db.rowLength);
+		JLabel lblNewLabel_19 = new JLabel(P_total);
 		lblNewLabel_19.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_19.setBounds(155, 135, 30, 21);
+		lblNewLabel_19.setBounds(155, 135, 43, 21);
 		panel_3.add(lblNewLabel_19);
-
-		JButton btnNewButton = new JButton("List items");
-		btnNewButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	panel_4.setVisible(true);
-		        DataBase db = new DataBase();
-		        int numberOfitems = 0;
-		        
-		        // Clear existing text before adding new content
-		        textArea.setText("");
-
-		        for (String item : db.items) {
-		            textArea.append(item + "\n");
-		            numberOfitems++;
-		        }
-
-		        String numberitems = String.valueOf(numberOfitems);
-		        lblNewLabel_19.setText(numberitems);
-		    }
-		});
-
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(10, 232, 192, 21);
-		panel_3.add(btnNewButton);
 		
-		JButton btnListPrices = new JButton("List Prices");
-		btnListPrices.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 panel_4.setVisible(true);
-			        DataBase db = new DataBase();
-			        int numberOfitems = 0;
-			        
-			        // Clear existing text before adding new content
-			        textArea.setText("");
-
-			        for (int price : db.price) {
-			            textArea.append(price + " ETB" + "\n");
-			            numberOfitems++;
-			        }
-
-			        String numberitems = String.valueOf(numberOfitems);
-			        lblNewLabel_19.setText(numberitems);
-			}
-		});
-		btnListPrices.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnListPrices.setBounds(351, 235, 192, 21);
-		panel_3.add(btnListPrices);
+		// total sales does not work properly.............it has to be fixed
+		final int totalSales = db.totalSales;
 		
+		String totalsales = String.valueOf(totalSales);
+		JLabel lblNewLabel_19_1 = new JLabel(totalsales);
+		lblNewLabel_19_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_19_1.setBounds(501, 135, 93, 21);
+		panel_3.add(lblNewLabel_19_1);
+
 		
 	}
 }
