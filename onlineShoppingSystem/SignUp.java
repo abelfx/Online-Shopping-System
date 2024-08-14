@@ -189,7 +189,7 @@ public class SignUp extends JFrame {
 					
 					db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
 							"root", "Ab12el34te56sf78@");
-					String sql = "INSERT INTO users (userID, Email, Password, SecurityQ, S_Answer) VALUES (?, ?, ?, ?, ?)";
+					String sql = "INSERT INTO user (userID, Email, Password, SecurityQ, S_Answer) VALUES (?, ?, ?, ?, ?)";
 					
 					PreparedStatement pstmt = db.con.prepareStatement(sql);
 					 

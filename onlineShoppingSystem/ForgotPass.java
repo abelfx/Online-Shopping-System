@@ -126,11 +126,14 @@ public class ForgotPass extends JFrame {
 				DataBase db = new DataBase();
 				int length = db.email.length;
 				String email = "";
+				
 				int i = 0;
+				int emaillocation = 0;
 				boolean found = false;
 				while( i < length) {
 					if(textField.getText().equals(db.email[i])) {
 						email = db.email[i];
+						emaillocation = i;
 						found = true;
 						break;
 					}
@@ -139,42 +142,49 @@ public class ForgotPass extends JFrame {
 				boolean layer2 = false;
 				
 				if(found) {
-					int j = 0;
 					String SQ = (String) comboBox.getSelectedItem();
 					String Answer = textField_2.getText();
-					while(j < length) {
-						if(SQ.equals(db.securityQ[j]) && Answer.equals(db.Answer[j])) {
-							layer2 = true;
-							break;
-						}
-						j++;
-					}
 					
+					
+						if(SQ.equals(db.securityQ[emaillocation]) && Answer.equals(db.Answer[emaillocation])) {
+							layer2 = true;
+						}
 				}
+				
 				if(layer2) {
 					String newPassword = textField_3.getText();
 					try {
 						db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
 								"root", "Ab12el34te56sf78@");
 						
-						String sql = "Update users Set Password = newPassword where Email = email";
+						String sql = "Update user Set Password = ? where Email = ?";
 						
 						PreparedStatement pstmt = db.con.prepareStatement(sql);
 						
 						 pstmt.setString(1, newPassword); 
 				         pstmt.setString(2, email); 
+				         
+				         int rowUpdated = pstmt.executeUpdate();
+				         
+				         if(rowUpdated > 0) {
+				        	  JOptionPane.showMessageDialog(null,  "Pasword Changed"); 
+				         }else {
+				        	 JOptionPane.showMessageDialog(null,  "Error Updating password!, try again!");
+				         }
+				       
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}
-					
-					 
+					}	
 					
 				}
+				else {
+		        	 JOptionPane.showMessageDialog(null,  "Something went wrong, try again!");  
+			}
 				
 				
 				
-				JOptionPane.showMessageDialog(null,  "Pasword Changed");
+				
 			}
 		});
 		btnNewButton.setForeground(new Color(0, 128, 255));

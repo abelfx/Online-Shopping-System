@@ -165,8 +165,8 @@ public class ManageProducts extends JFrame {
 				int p_ID = Integer.parseInt(textField_1.getText());
 				String p_Name = textField_2.getText();
 				String Catagory = textField_3.getText();
-				int Quantity = Integer.parseInt(textField_4.getText());
-				int Price = Integer.parseInt(textField_5.getText());
+				int Quantity = Integer.parseInt(textField_5.getText());
+				int Price = Integer.parseInt(textField_4.getText());
 				
 				DataBase db = new DataBase();
 				
