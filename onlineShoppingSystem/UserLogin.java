@@ -25,6 +25,7 @@ public class UserLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	String InputEmail;
 
 
 	/**
@@ -161,7 +162,7 @@ public class UserLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DataBase db = new DataBase();
 				if(rdbtnNewRadioButton_2.isEnabled()) {
-					String InputEmail = textField.getText();
+				    InputEmail = textField.getText();
 					String InputPass = textField_1.getText();
 					
 					for(int i = 0; i < db.email.length; i++) {

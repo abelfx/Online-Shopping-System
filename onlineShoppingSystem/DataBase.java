@@ -14,6 +14,7 @@ public class DataBase {
     static String[] Answer;
     static int rowLength = 0;
     static int totalSales = 0;
+    static int userNum = 0;
     Connection con;
 
     public DataBase() {
@@ -64,6 +65,7 @@ public class DataBase {
                 email[index_1] = set_1.getString("Email");
                 password[index_1] = set_1.getString("Password");
                 index_1++;
+                userNum++;
             }  
             
             int index_2 = 0;

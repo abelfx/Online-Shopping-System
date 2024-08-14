@@ -78,7 +78,7 @@ public class Dashboard extends JFrame {
 		lblNewLabel.setBounds(64, 10, 310, 81);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("abeltesfa198@gmail.com");
+		JLabel lblNewLabel_1 = new JLabel("DashBoard");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setBounds(581, 41, 224, 27);
@@ -258,6 +258,12 @@ public class Dashboard extends JFrame {
 		lblNewLabel_19_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_19_1.setBounds(501, 135, 93, 21);
 		panel_3.add(lblNewLabel_19_1);
+		
+		String usersNum = String.valueOf(db.userNum);
+		JLabel lblNewLabel_19_1_1 = new JLabel(usersNum);
+		lblNewLabel_19_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_19_1_1.setBounds(330, 135, 52, 21);
+		panel_3.add(lblNewLabel_19_1_1);
 
 		
 	}
