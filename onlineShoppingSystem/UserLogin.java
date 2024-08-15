@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -157,11 +158,18 @@ public class UserLogin extends JFrame {
 		rdbtnNewRadioButton_2.setBounds(143, 199, 57, 21);
 		panel_1.add(rdbtnNewRadioButton_2);
 		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnNewRadioButton);
+		group.add(rdbtnNewRadioButton_1);
+		group.add(rdbtnNewRadioButton_2);
+		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DataBase db = new DataBase();
-				if(rdbtnNewRadioButton_2.isEnabled()) {
+				
+				
+				if(rdbtnNewRadioButton_2.isSelected()) {
 				    InputEmail = textField.getText();
 					String InputPass = textField_1.getText();
 					

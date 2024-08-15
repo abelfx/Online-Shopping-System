@@ -28,6 +28,7 @@ public class Dashboard extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
 
 	/**
 	 * Launch the application.
@@ -131,12 +132,25 @@ public class Dashboard extends JFrame {
 		panel_1.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel("Manage Products");
+		lblNewLabel_11.setBackground(new Color(180, 180, 180));
 		lblNewLabel_11.addMouseListener(new MouseAdapter() {
+			
+			private Color initialColor = lblNewLabel_11.getBackground();
+			private Color hoverColor = Color.WHITE;
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ManageProducts manage = new ManageProducts();
 				manage.setVisible(true);
 				setVisible(false);
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_11.setForeground(hoverColor);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_11.setForeground(initialColor);
 			}
 		});
 		lblNewLabel_11.setFont(new Font("Times New Roman", Font.BOLD, 20));
@@ -145,6 +159,30 @@ public class Dashboard extends JFrame {
 		panel_1.add(lblNewLabel_11);
 		
 		JLabel lblNewLabel_12 = new JLabel(" Manage Users");
+		lblNewLabel_12.setBackground(new Color(180, 180, 180));
+		lblNewLabel_12.addMouseListener(new MouseAdapter() {
+			
+			private Color initialColor = lblNewLabel_12.getBackground();
+			private Color hoverColor = Color.WHITE;
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				manageUser user = new manageUser();
+				user.setVisible(true);
+				setVisible(false);
+				
+				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_12.setForeground(hoverColor);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_12.setForeground(initialColor);
+			}
+			
+		});
 		lblNewLabel_12.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_12.setForeground(new Color(180, 180, 180));
 		lblNewLabel_12.setBounds(35, 197, 186, 34);
@@ -157,6 +195,7 @@ public class Dashboard extends JFrame {
 		panel_1.add(lblNewLabel_13);
 		
 		JLabel lblNewLabel_14 = new JLabel("Transaction");
+		lblNewLabel_14.setBackground(new Color(180, 180, 180));
 		lblNewLabel_14.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_14.setForeground(new Color(180, 180, 180));
 		lblNewLabel_14.setBounds(35, 399, 186, 47);
@@ -264,7 +303,7 @@ public class Dashboard extends JFrame {
 		lblNewLabel_19_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_19_1_1.setBounds(330, 135, 52, 21);
 		panel_3.add(lblNewLabel_19_1_1);
-
 		
 	}
+	
 }

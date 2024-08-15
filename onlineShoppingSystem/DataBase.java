@@ -10,6 +10,7 @@ public class DataBase {
     static String[] email;
     static String[] password;
     static String[][] products;
+    static String[][] users;
     static String[] securityQ;
     static String[] Answer;
     static int rowLength = 0;
@@ -36,8 +37,11 @@ public class DataBase {
             ResultSet countResult = state_3.executeQuery("SELECT COUNT(*) FROM PRODUCTS");
             
             Statement state_4 = con.createStatement();
-            ResultSet set_4 = state_4.executeQuery("SELECT SecurityQ, S_Answer FROM user");  
-
+            ResultSet set_4 = state_4.executeQuery("SELECT * FROM user");  
+            
+            Statement state_5 = con.createStatement();
+            ResultSet set_5 = state_5.executeQuery("SELECT * FROM user"); 
+            
             if (countResult.next()) {
                 rowLength = countResult.getInt(1);
             }
@@ -50,6 +54,7 @@ public class DataBase {
             securityQ = new String[10];
             Answer = new String[10];
             products = new String[rowLength][5];
+            
 
             // Populate the items and price arrays
             int index = 0;
@@ -68,6 +73,8 @@ public class DataBase {
                 userNum++;
             }  
             
+            users = new String[userNum][5];
+            
             int index_2 = 0;
             while (set_4.next() && index_2 < securityQ.length) {
                 securityQ[index_2] = set_4.getString("SecurityQ");
@@ -85,10 +92,23 @@ public class DataBase {
                 products[i][2] = set_2.getString("Catagory");
                 products[i][3] = set_2.getString("Quantity");
                 products[i][4] = set_2.getString("Price");
+                
                 totalSales += set_2.getInt("Price");
                 i++;
             }
-
+            
+            int j = 0;
+            
+            while(set_5.next()) {
+            	users[j][0] = set_5.getString("UserID");
+                users[j][1] = set_5.getString("Email");
+                users[j][2] = set_5.getString("Password");
+                users[j][3] = set_5.getString("SecurityQ");
+                users[j][4] = set_5.getString("S_Answer");
+                j++;
+            }
+            
+            
         } catch (ClassNotFoundException e) {
             System.out.println("Driver not found: " + e);
         } catch (SQLException e) {
