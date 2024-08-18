@@ -19,13 +19,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
 
 public class SignUp extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -84,65 +85,54 @@ public class SignUp extends JFrame {
 		lblNewLabel.setBounds(141, 25, 102, 31);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("ID");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(10, 83, 108, 19);
-		panel.add(lblNewLabel_1);
-		
-		textField = new JTextField();
-		textField.setBounds(10, 109, 335, 31);
-		panel.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblNewLabel_2 = new JLabel("User Name");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(10, 151, 108, 31);
+		lblNewLabel_2.setBounds(6, 81, 108, 31);
 		panel.add(lblNewLabel_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(10, 181, 335, 31);
+		textField_1.setBounds(6, 111, 335, 31);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Email");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(10, 223, 108, 31);
+		lblNewLabel_3.setBounds(6, 153, 108, 31);
 		panel.add(lblNewLabel_3);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 253, 335, 31);
+		textField_2.setBounds(6, 183, 335, 31);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Password");
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(10, 294, 108, 31);
+		lblNewLabel_4.setBounds(6, 224, 108, 31);
 		panel.add(lblNewLabel_4);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(10, 322, 335, 31);
+		textField_3.setBounds(6, 252, 335, 31);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Phone");
 		lblNewLabel_5.setForeground(new Color(255, 255, 255));
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_5.setBounds(10, 360, 132, 31);
+		lblNewLabel_5.setBounds(6, 290, 132, 31);
 		panel.add(lblNewLabel_5);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(10, 390, 335, 31);
+		textField_4.setBounds(6, 320, 335, 31);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Security Question");
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_6.setBounds(10, 431, 132, 31);
+		lblNewLabel_6.setBounds(6, 361, 132, 31);
 		panel.add(lblNewLabel_6);
 		
 		JComboBox comboBox = new JComboBox();
@@ -152,19 +142,37 @@ public class SignUp extends JFrame {
 				"what is your pets name?", 
 				"what school did you attend?"}));
 		comboBox.setMaximumRowCount(4);
-		comboBox.setBounds(10, 462, 332, 31);
+		comboBox.setBounds(6, 392, 332, 31);
 		panel.add(comboBox);
 		
 		JLabel lblNewLabel_6_1 = new JLabel("Answer");
 		lblNewLabel_6_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_6_1.setBounds(10, 502, 132, 31);
+		lblNewLabel_6_1.setBounds(6, 433, 132, 31);
 		panel.add(lblNewLabel_6_1);
 		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		textField_6.setBounds(10, 531, 335, 31);
+		textField_6.setBounds(6, 461, 335, 31);
 		panel.add(textField_6);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("customer");
+		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		rdbtnNewRadioButton.setBackground(new Color(0, 128, 255));
+		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
+		rdbtnNewRadioButton.setBounds(6, 537, 103, 21);
+		panel.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnSupplier = new JRadioButton("Supplier");
+		rdbtnSupplier.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		rdbtnSupplier.setBackground(new Color(0, 128, 255));
+		rdbtnSupplier.setForeground(new Color(255, 255, 255));
+		rdbtnSupplier.setBounds(238, 537, 103, 21);
+		panel.add(rdbtnSupplier);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnSupplier);
+		group.add(rdbtnNewRadioButton);
 		
 		JButton btnNewButton = new JButton("Register");
 		
@@ -174,11 +182,11 @@ public class SignUp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// textField entries
-				id = Integer.parseInt(textField.getText());
+//				id = Integer.parseInt(textField.getText());
 				String username = textField_1.getText();
 				email = textField_2.getText();
 				password = textField_3.getText();
-				int phone = Integer.parseInt(textField_4.getText());
+//				int phone = Integer.parseInt(textField_4.getText());
 				String SecurityQ = (String) comboBox.getSelectedItem();
 				System.out.println(SecurityQ);
 				String Answer = textField_6.getText();
@@ -189,38 +197,60 @@ public class SignUp extends JFrame {
 					
 					db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
 							"root", "Ab12el34te56sf78@");
-					String sql = "INSERT INTO user (userID, Email, Password, SecurityQ, S_Answer) VALUES (?, ?, ?, ?, ?)";
 					
-					PreparedStatement pstmt = db.con.prepareStatement(sql);
-					 
-					String userID = String.valueOf(id);
+					if(rdbtnNewRadioButton.isSelected()) {
+						String sql = "INSERT INTO customer (Email, Password, products, `rank`, SecurityQ, S_Answer) VALUES (?, ?, ?, ?, ?, ?)";
+						
+						PreparedStatement pstmt = db.con.prepareStatement(sql);
+						
+						 pstmt.setString(1,email );
+				         pstmt.setString(2, password);
+				         pstmt.setString(3, "none");
+				         pstmt.setString(4,  "D");
+				         pstmt.setString(5,  SecurityQ);
+				         pstmt.setString(6, Answer);
+				         
+				         
+				         int rowsAffected = pstmt.executeUpdate();
+				         System.out.println("rowsAffected: " + rowsAffected);	
+				         JOptionPane.showMessageDialog(null, "Registration Complete");
+				         UserLogin login = new UserLogin();
+							login.setVisible(true);
+							setVisible(false);
+						
+					}
 					
-					 pstmt.setString(1, userID );
-			         pstmt.setString(2, email);
-			         pstmt.setString(3, password);
-			         pstmt.setString(4,  SecurityQ);
-			         pstmt.setString(5,  Answer);
-			         
-			         int rowsAffected = pstmt.executeUpdate();
-			         System.out.println("rowsAffected: " + rowsAffected);	
+					if(rdbtnSupplier.isSelected()) {
+						String sql = "INSERT INTO supplier (Email, Password, items_sold, total_sales, SecurityQ, S_Answer) VALUES (?, ?, ?, ?, ?, ?)";
+						
+						PreparedStatement pstmt = db.con.prepareStatement(sql);
+						 
+						String userID = String.valueOf(id);
+						
+						 pstmt.setString(1,email );
+				         pstmt.setString(2, password);
+				         pstmt.setString(3, "none");
+				         pstmt.setString(4,  "0");
+				         pstmt.setString(5,  SecurityQ);
+				         pstmt.setString(6, Answer);
+				         
+				         int rowsAffected = pstmt.executeUpdate();
+				         System.out.println("rowsAffected: " + rowsAffected);
+				         JOptionPane.showMessageDialog(null, "Registration Complete");
+				         UserLogin login = new UserLogin();
+							login.setVisible(true);
+							setVisible(false);
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Choice your venture!");
+						
+					}
+						
 				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Registration is not successful!");
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-
-				;
-				
-		        
-				// for now only inserting ID, Email and Password
-				
-//				db.user = id;
-//				db.Email = email;
-//				db.Password = password;
-				
-				JOptionPane.showMessageDialog(null, "Registration Complete");
-				UserLogin login = new UserLogin();
-				login.setVisible(true);
-				setVisible(false);
+				};
 			}
 		});
 		btnNewButton.setForeground(new Color(0, 128, 255));
@@ -241,6 +271,11 @@ public class SignUp extends JFrame {
 		btnNewButton_1.setBounds(202, 591, 124, 30);
 		panel.add(btnNewButton_1);
 		
-	
+		JLabel lblNewLabel_6_2 = new JLabel("which one are you?");
+		lblNewLabel_6_2.setForeground(Color.WHITE);
+		lblNewLabel_6_2.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewLabel_6_2.setBounds(95, 513, 132, 31);
+		panel.add(lblNewLabel_6_2);
+		
 	}
 }

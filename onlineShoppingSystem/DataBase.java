@@ -1,6 +1,7 @@
 package onlineShoppingSystem;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DataBase {
@@ -13,6 +14,8 @@ public class DataBase {
     static String[][] users;
     static String[] securityQ;
     static String[] Answer;
+    static ArrayList<String> supplier;
+    static ArrayList<String> supplierpass;
     static int rowLength = 0;
     static int totalSales = 0;
     static int userNum = 0;
@@ -42,6 +45,10 @@ public class DataBase {
             Statement state_5 = con.createStatement();
             ResultSet set_5 = state_5.executeQuery("SELECT * FROM user"); 
             
+            Statement state_6 = con.createStatement();
+            ResultSet set_6 = state_6.executeQuery("SELECT * FROM supplier"); 
+            
+            
             if (countResult.next()) {
                 rowLength = countResult.getInt(1);
             }
@@ -54,7 +61,8 @@ public class DataBase {
             securityQ = new String[10];
             Answer = new String[10];
             products = new String[rowLength][5];
-            
+            supplier = new ArrayList<String>();
+            supplierpass = new ArrayList<String>();
 
             // Populate the items and price arrays
             int index = 0;
@@ -106,6 +114,11 @@ public class DataBase {
                 users[j][3] = set_5.getString("SecurityQ");
                 users[j][4] = set_5.getString("S_Answer");
                 j++;
+            }
+            
+            while(set_6.next()) {
+            	supplier.add(set_6.getString("Email"));
+            	supplierpass.add(set_6.getNString("Password"));
             }
             
             

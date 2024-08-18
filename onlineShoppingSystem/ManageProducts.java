@@ -322,12 +322,6 @@ public class ManageProducts extends JFrame {
 		btnNewButton_4_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton_4_1.setBounds(213, 56, 131, 25);
 		panel.add(btnNewButton_4_1);
-		
-		
-        
-		
-		
-        
 
 	}
 }

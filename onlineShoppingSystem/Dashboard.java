@@ -305,5 +305,4 @@ public class Dashboard extends JFrame {
 		panel_3.add(lblNewLabel_19_1_1);
 		
 	}
-	
 }

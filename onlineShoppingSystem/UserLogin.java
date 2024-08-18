@@ -168,11 +168,36 @@ public class UserLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DataBase db = new DataBase();
 				
-				
-				if(rdbtnNewRadioButton_2.isSelected()) {
-				    InputEmail = textField.getText();
-					String InputPass = textField_1.getText();
+				 InputEmail = textField.getText();
+				 String InputPass = textField_1.getText();
+				 
+				 int location = 0;
+				 boolean found = false;
+				if(rdbtnNewRadioButton_1.isSelected()) {
+					for(String supplier: db.supplier) {
+						if(InputEmail.equals(supplier)) {
+							int row = db.supplier.indexOf(supplier);
+							found = true;
+							location = row;
+						}
+					}
 					
+				  boolean finalCheck = false;
+					if(found) {
+						if(db.supplierpass.get(location).equals(InputPass)) {
+							finalCheck = true;
+						}
+					}
+					
+					if(finalCheck) {
+						SupplierDashboard dashboard = new SupplierDashboard();
+						dashboard.setVisible(true);
+						setVisible(false);
+					}else {
+						JOptionPane.showMessageDialog(null, "Either Email or Password incorrect\nTry Again");
+					}
+				}
+				else if(rdbtnNewRadioButton_2.isSelected()) {
 					for(int i = 0; i < db.email.length; i++) {
 						if(InputEmail.equals(db.email[i]) && InputPass.equals(db.password[i])) {
 							Dashboard board = new Dashboard();
@@ -181,8 +206,6 @@ public class UserLogin extends JFrame {
 							break;
 					}else if(i == db.email.length - 1){
 						JOptionPane.showMessageDialog(null, "Either Email or Password incorrect\nTry Again");
-						textField.setText("");
-						textField_1.setText("");
 					} else {
 						continue;
 					}
@@ -190,10 +213,13 @@ public class UserLogin extends JFrame {
 						
 					}
 						
-				}else {
-					JOptionPane.showMessageDialog(null, "Currenly only Admin works");
 				}
-				
+				else if(rdbtnNewRadioButton.isSelected()) {
+					JOptionPane.showMessageDialog(null, "user option is not currently functional");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Please specify why you are here");
+				}
 				
 			}
 		});
