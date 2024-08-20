@@ -30,7 +30,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class manageUser extends JFrame {
+public class ManageSuppliers extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -47,8 +47,8 @@ public class manageUser extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					manageUser user = new manageUser();
-					user.setVisible(true);
+					ManageSuppliers suppliers = new ManageSuppliers();
+					suppliers.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,7 +59,7 @@ public class manageUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-    public manageUser() {
+    public ManageSuppliers() {
         setTitle("Online Shopping System");
         icon = new ImageIcon("logoxo.jpg");
         this.setIconImage(icon.getImage());
@@ -90,11 +90,11 @@ public class manageUser extends JFrame {
         panel.add(textField);
         textField.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("Manage Users");
+        JLabel lblNewLabel_1 = new JLabel("Manage Suppliers");
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        lblNewLabel_1.setBounds(57, 46, 225, 37);
+        lblNewLabel_1.setBounds(57, 46, 303, 37);
         panel.add(lblNewLabel_1);
 
         JPanel panel_1 = new JPanel();
@@ -114,22 +114,22 @@ public class manageUser extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table_2);
         panel_2.add(scrollPane, BorderLayout.CENTER);
 
-        JButton btnNewButton = new JButton("List Users");
+        JButton btnNewButton = new JButton("List Suppliers");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DataBase db = new DataBase();
                 
-                String[][] data = new String[db.userNum][5];
-                String[] column = { "UserID", "Email", "Password", "SecurityQ", "Answer" };
+                String[][] data = new String[db.supplierNum][5];
+                String[] column = { "UserID", "Email", "Password", "items_sold", "total_sales" };
                 DefaultTableModel T_model = new DefaultTableModel(data, column);
                 table_2.setModel(T_model);
 
-                for (int i = 0; i < db.userNum; i++) {
-                    T_model.setValueAt(db.users[i][0], i, 0);
-                    T_model.setValueAt(db.users[i][1], i, 1);
-                    T_model.setValueAt(db.users[i][2], i, 2);
-                    T_model.setValueAt(db.users[i][3], i, 3);
-                    T_model.setValueAt(db.users[i][4], i, 4);
+                for (int i = 0; i < db.supplierNum; i++) {
+                    T_model.setValueAt(db.suppliers[i][0], i, 0);
+                    T_model.setValueAt(db.suppliers[i][1], i, 1);
+                    T_model.setValueAt(db.suppliers[i][2], i, 2);
+                    T_model.setValueAt(db.suppliers[i][3], i, 3);
+                    T_model.setValueAt(db.suppliers[i][4], i, 4);
                 }
 
                 T_model.fireTableDataChanged();
@@ -142,13 +142,13 @@ public class manageUser extends JFrame {
         btnNewButton.setBounds(68, 120, 208, 33);
         panel_1.add(btnNewButton);
         
-        JButton btnAddUsers = new JButton("Add Users");
+        JButton btnAddUsers = new JButton("Add Suppliers");
         btnAddUsers.setForeground(new Color(0, 128, 255));
         btnAddUsers.setFont(new Font("Times New Roman", Font.BOLD, 20));
         btnAddUsers.setBounds(68, 184, 208, 33);
         panel_1.add(btnAddUsers);
         
-        JButton btnNewButton_1_1 = new JButton("Remove Users");
+        JButton btnNewButton_1_1 = new JButton("Remove Suppliers");
         btnNewButton_1_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}

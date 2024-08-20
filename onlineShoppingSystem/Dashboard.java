@@ -208,6 +208,27 @@ public class Dashboard extends JFrame {
 		panel_1.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("Manage Suppliers");
+		lblNewLabel_16.setBackground(new Color(180, 180, 180));
+		lblNewLabel_16.addMouseListener(new MouseAdapter() {
+			
+			private Color initialColor = lblNewLabel_16.getBackground();
+			private Color hoverColor = Color.WHITE;
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ManageSuppliers supplier = new ManageSuppliers();
+				supplier.setVisible(true);
+				setVisible(false);
+			}
+		
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_16.setForeground(hoverColor);
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_16.setForeground(initialColor);
+			}
+		});
 		lblNewLabel_16.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_16.setForeground(new Color(180, 180, 180));
 		lblNewLabel_16.setBounds(35, 241, 186, 41);
@@ -235,7 +256,14 @@ public class Dashboard extends JFrame {
 		lblNewLabel_2.setBounds(10, 77, 159, 41);
 		panel_3.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_5 = new JLabel("Toral Products:");
+		ManageProducts products = new ManageProducts();
+		String catagories = String.valueOf( products.comboBox.getItemCount());
+		JLabel lblNewLabel_19_2 = new JLabel("8");
+		lblNewLabel_19_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_19_2.setBounds(174, 85, 43, 21);
+		panel_3.add(lblNewLabel_19_2);
+		
+		JLabel lblNewLabel_5 = new JLabel("Total Products:");
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_5.setBounds(10, 128, 149, 38);
 		panel_3.add(lblNewLabel_5);
@@ -245,9 +273,9 @@ public class Dashboard extends JFrame {
 		lblNewLabel_6.setBounds(214, 77, 159, 41);
 		panel_3.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("Total Users:");
+		JLabel lblNewLabel_7 = new JLabel("Total Admins:");
 		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_7.setBounds(214, 128, 134, 38);
+		lblNewLabel_7.setBounds(214, 128, 123, 38);
 		panel_3.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("Todays Sales:");
@@ -301,8 +329,22 @@ public class Dashboard extends JFrame {
 		String usersNum = String.valueOf(db.userNum);
 		JLabel lblNewLabel_19_1_1 = new JLabel(usersNum);
 		lblNewLabel_19_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_19_1_1.setBounds(330, 135, 52, 21);
+		lblNewLabel_19_1_1.setBounds(346, 135, 52, 21);
 		panel_3.add(lblNewLabel_19_1_1);
+		
+		
+		// suppliers total number
+		
+		String supplierNum = String.valueOf(db.supplierNum);
+		JLabel lblNewLabel_19_1_1_1 = new JLabel(supplierNum);
+		lblNewLabel_19_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_19_1_1_1.setBounds(357, 83, 41, 25);
+		panel_3.add(lblNewLabel_19_1_1_1);
+		
+		JLabel lblNewLabel_19_1_2 = new JLabel("0");
+		lblNewLabel_19_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_19_1_2.setBounds(551, 87, 31, 21);
+		panel_3.add(lblNewLabel_19_1_2);
 		
 	}
 }

@@ -10,8 +10,11 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.border.CompoundBorder;
@@ -35,7 +38,6 @@ public class ManageProducts extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
@@ -44,6 +46,7 @@ public class ManageProducts extends JFrame {
 	private JTable table_1;
 	private JTable table_2;
 	private ImageIcon icon;
+	static JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -102,58 +105,57 @@ public class ManageProducts extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Product ID");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(29, 25, 116, 24);
-		panel_1.add(lblNewLabel_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(29, 57, 307, 34);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-		
 		JLabel lblNewLabel_2 = new JLabel("Product Name");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(29, 101, 116, 22);
+		lblNewLabel_2.setBounds(29, 42, 116, 22);
 		panel_1.add(lblNewLabel_2);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(29, 127, 307, 34);
+		textField_2.setBounds(29, 68, 307, 34);
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Catagory");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(29, 171, 116, 26);
+		lblNewLabel_3.setBounds(29, 112, 116, 26);
 		panel_1.add(lblNewLabel_3);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(29, 201, 307, 34);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {
+				"Applicance",
+				"Drinks",
+				"Electronics", 
+				"Furniture",
+				"Fruit", 
+				"Vegetable", 
+				"Accessories",
+				"Books"}));
+		comboBox.setMaximumRowCount(5);
+		comboBox.setBounds(29, 148, 307, 35);
+		panel_1.add(comboBox);
+		
 		
 		JLabel lblNewLabel_4 = new JLabel("Quantity");
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(29, 252, 116, 29);
+		lblNewLabel_4.setBounds(29, 193, 116, 29);
 		panel_1.add(lblNewLabel_4);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(29, 353, 307, 34);
+		textField_4.setBounds(29, 294, 307, 34);
 		panel_1.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Price");
 		lblNewLabel_5.setForeground(new Color(255, 255, 255));
 		lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_5.setBounds(29, 327, 116, 26);
+		lblNewLabel_5.setBounds(29, 268, 116, 26);
 		panel_1.add(lblNewLabel_5);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(29, 278, 307, 39);
+		textField_5.setBounds(29, 219, 307, 39);
 		panel_1.add(textField_5);
 		textField_5.setColumns(10);
 		
@@ -162,9 +164,8 @@ public class ManageProducts extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				// textField entries
-				int p_ID = Integer.parseInt(textField_1.getText());
 				String p_Name = textField_2.getText();
-				String Catagory = textField_3.getText();
+				String Catagory = (String) comboBox.getSelectedItem();
 				int Quantity = Integer.parseInt(textField_5.getText());
 				int Price = Integer.parseInt(textField_4.getText());
 				
@@ -174,7 +175,7 @@ public class ManageProducts extends JFrame {
 					
 					db.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
 							"root", "Ab12el34te56sf78@");
-					String sql = "INSERT INTO products (P_ID, P_Name, Catagory, Quantity, Price) VALUES (?, ?, ?, ?, ?)";
+					String sql = "INSERT INTO products (P_Name, Catagory, Quantity, Price) VALUES ( ?, ?, ?, ?)";
 					
 					 // Determine the number of rows in the PRODUCTS table
 		            Statement state_3 = db.con.createStatement();
@@ -185,15 +186,13 @@ public class ManageProducts extends JFrame {
 		            
 					PreparedStatement pstmt = db.con.prepareStatement(sql);
 					 
-					String userID = String.valueOf(p_ID);
 					String quantity = String.valueOf(Quantity);
 					String price = String.valueOf(Price);
 					
-					 pstmt.setString(1, userID );
-			         pstmt.setString(2, p_Name);
-			         pstmt.setString(3, Catagory);
-			         pstmt.setString(4, quantity);
-			         pstmt.setString(5, price);
+			         pstmt.setString(1, p_Name);
+			         pstmt.setString(2, Catagory);
+			         pstmt.setString(3, quantity);
+			         pstmt.setString(4, price);
 
 			         
 			         int rowsAffected = pstmt.executeUpdate();
@@ -208,25 +207,31 @@ public class ManageProducts extends JFrame {
 		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton.setForeground(new Color(0, 128, 255));
-		btnNewButton.setBounds(29, 417, 131, 33);
+		btnNewButton.setBounds(29, 363, 131, 33);
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Update");
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton_1.setForeground(new Color(0, 128, 255));
-		btnNewButton_1.setBounds(196, 417, 140, 33);
+		btnNewButton_1.setBounds(196, 363, 140, 33);
 		panel_1.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Delete");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// this space is for deleting products 
+				// i am not sure how i am going to do that yet 
+				// so i am leaving this blank for now
+			}
+		});
 		btnNewButton_2.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton_2.setForeground(new Color(0, 128, 255));
-		btnNewButton_2.setBounds(29, 470, 131, 34);
+		btnNewButton_2.setBounds(29, 416, 131, 34);
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Clear");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField_1.setText("");
 				textField_2.setText("");
 				textField_3.setText("");
 				textField_4.setText("");
@@ -236,7 +241,7 @@ public class ManageProducts extends JFrame {
 		});
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		btnNewButton_3.setForeground(new Color(0, 128, 255));
-		btnNewButton_3.setBounds(196, 470, 140, 34);
+		btnNewButton_3.setBounds(196, 416, 140, 34);
 		panel_1.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_6 = new JLabel("<- Back to DashBoard");
@@ -253,6 +258,8 @@ public class ManageProducts extends JFrame {
 		lblNewLabel_6.setBounds(196, 514, 153, 22);
 		panel_1.add(lblNewLabel_6);
 		
+		
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 128, 255));
 		panel_2.setBounds(388, 117, 598, 546);
@@ -262,9 +269,9 @@ public class ManageProducts extends JFrame {
 
         // Create table 
 		DataBase db = new DataBase();
-		String[][] data = new String[db.rowLength][5];
+		String[][] data = new String[db.rowLength][6];
 		String[] column = {
-        		"P_ID", "P_Name", "Category", "Quantity", "Price"
+        		"P_ID", "P_Name", "Category", "Quantity", "Price", "purchased_at"
         	};
 		
 		
@@ -272,7 +279,7 @@ public class ManageProducts extends JFrame {
         JTable table_2 = new JTable(T_model
         ) {
         	Class[] columnTypes = new Class[] {
-        		Object.class, Object.class, Object.class, String.class, Object.class
+        		Object.class, Object.class, Object.class, String.class, Object.class, Object.class
         	};
         	public Class getColumnClass(int columnIndex) {
         		return columnTypes[columnIndex];
@@ -297,6 +304,7 @@ public class ManageProducts extends JFrame {
 					T_model.setValueAt(db.products[i][2], i, 2);
 					T_model.setValueAt(db.products[i][3], i, 3);
 					T_model.setValueAt(db.products[i][4], i, 4);
+					T_model.setValueAt(db.products[i][5], i, 5);
 					i++;
 				}
 				T_model.fireTableDataChanged();
