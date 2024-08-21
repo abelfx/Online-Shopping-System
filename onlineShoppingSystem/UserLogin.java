@@ -19,14 +19,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JPasswordField;
+import javax.swing.JCheckBox;
 
 public class UserLogin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	String InputEmail;
+	private JPasswordField passwordField;
 
 
 	/**
@@ -119,12 +121,6 @@ public class UserLogin extends JFrame {
 		lblNewLabel_5.setBounds(28, 76, 45, 13);
 		panel_1.add(lblNewLabel_5);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		textField_1.setBounds(28, 160, 190, 28);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-		
 		JLabel lblNewLabel_6 = new JLabel("Password:");
 		lblNewLabel_6.setForeground(new Color(255, 255, 255));
 		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 15));
@@ -141,21 +137,21 @@ public class UserLogin extends JFrame {
 		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
 		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		rdbtnNewRadioButton.setBackground(new Color(0, 128, 255));
-		rdbtnNewRadioButton.setBounds(6, 199, 49, 21);
+		rdbtnNewRadioButton.setBounds(28, 231, 49, 21);
 		panel_1.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Supplier");
 		rdbtnNewRadioButton_1.setForeground(new Color(255, 255, 255));
 		rdbtnNewRadioButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		rdbtnNewRadioButton_1.setBackground(new Color(0, 128, 255));
-		rdbtnNewRadioButton_1.setBounds(67, 199, 74, 21);
+		rdbtnNewRadioButton_1.setBounds(89, 231, 74, 21);
 		panel_1.add(rdbtnNewRadioButton_1);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Admin");
 		rdbtnNewRadioButton_2.setForeground(new Color(255, 255, 255));
 		rdbtnNewRadioButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		rdbtnNewRadioButton_2.setBackground(new Color(0, 128, 255));
-		rdbtnNewRadioButton_2.setBounds(143, 199, 57, 21);
+		rdbtnNewRadioButton_2.setBounds(165, 231, 57, 21);
 		panel_1.add(rdbtnNewRadioButton_2);
 		
 		ButtonGroup group = new ButtonGroup();
@@ -163,14 +159,46 @@ public class UserLogin extends JFrame {
 		group.add(rdbtnNewRadioButton_1);
 		group.add(rdbtnNewRadioButton_2);
 		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(28, 160, 190, 25);
+		panel_1.add(passwordField);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Show Password");
+		chckbxNewCheckBox.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		chckbxNewCheckBox.setBackground(new Color(0, 128, 255));
+		chckbxNewCheckBox.setForeground(new Color(255, 255, 255));
+		chckbxNewCheckBox.setBounds(28, 195, 135, 21);
+		chckbxNewCheckBox.setFocusable(false);
+		panel_1.add(chckbxNewCheckBox);
+		
+		 JTextField textField_pass = new JTextField();
+		 textField_pass.setBounds(28, 160, 190, 25);
+		 panel_1.add(textField_pass);
+	     textField_pass.setVisible(false); // Initially hide the text field
+	        
+	        // Add action listener to the checkbox
+	        chckbxNewCheckBox.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                if (chckbxNewCheckBox.isSelected()) {
+	                    textField_pass.setText(new String(passwordField.getPassword()));
+	                    textField_pass.setVisible(true);
+	                    passwordField.setVisible(false);
+	                } else {
+	                    passwordField.setText(textField_pass.getText());
+	                    passwordField.setVisible(true);
+	                    textField_pass.setVisible(false);
+	                }
+	            }
+	        });
+		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DataBase db = new DataBase();
 				
 				 InputEmail = textField.getText();
-				 String InputPass = textField_1.getText();
-				 
+				 String InputPass = passwordField.getText();
 				 int location = 0;
 				 boolean found = false;
 				if(rdbtnNewRadioButton_1.isSelected()) {
@@ -263,5 +291,7 @@ public class UserLogin extends JFrame {
 		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblNewLabel_9.setBounds(115, 337, 60, 18);
 		panel_1.add(lblNewLabel_9);
+		
+		
 	}
 }
