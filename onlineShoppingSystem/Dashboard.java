@@ -191,21 +191,15 @@ public class Dashboard extends JFrame {
 		JLabel lblNewLabel_13 = new JLabel("Select Supplier");
 		lblNewLabel_13.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_13.setForeground(new Color(180, 180, 180));
-		lblNewLabel_13.setBounds(35, 348, 186, 41);
+		lblNewLabel_13.setBounds(35, 286, 186, 41);
 		panel_1.add(lblNewLabel_13);
 		
 		JLabel lblNewLabel_14 = new JLabel("Transaction");
 		lblNewLabel_14.setBackground(new Color(180, 180, 180));
 		lblNewLabel_14.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_14.setForeground(new Color(180, 180, 180));
-		lblNewLabel_14.setBounds(35, 399, 186, 47);
+		lblNewLabel_14.setBounds(35, 331, 186, 47);
 		panel_1.add(lblNewLabel_14);
-		
-		JLabel lblNewLabel_15 = new JLabel("Add Suppliers");
-		lblNewLabel_15.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lblNewLabel_15.setForeground(new Color(180, 180, 180));
-		lblNewLabel_15.setBounds(35, 292, 186, 46);
-		panel_1.add(lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("Manage Suppliers");
 		lblNewLabel_16.setBackground(new Color(180, 180, 180));

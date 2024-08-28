@@ -60,6 +60,7 @@ public class ManageSuppliers extends JFrame {
 	 * Create the frame.
 	 */
     public ManageSuppliers() {
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Online Shopping System");
         icon = new ImageIcon("logoxo.jpg");
         this.setIconImage(icon.getImage());
@@ -107,12 +108,13 @@ public class ManageSuppliers extends JFrame {
         panel_2.setBackground(new Color(219, 219, 219));
         panel_2.setBounds(377, 108, 609, 555);
         contentPane.add(panel_2);
-        panel_2.setLayout(new BorderLayout(0, 0));
+        panel_2.setLayout(null);
 
         // Initialize the table and scroll pane
         table_2 = new JTable();
         JScrollPane scrollPane = new JScrollPane(table_2);
-        panel_2.add(scrollPane, BorderLayout.CENTER);
+        scrollPane.setBounds(0, 0, 609, 555);
+        panel_2.add(scrollPane);
 
         JButton btnNewButton = new JButton("List Suppliers");
         btnNewButton.addActionListener(new ActionListener() {
@@ -143,6 +145,13 @@ public class ManageSuppliers extends JFrame {
         panel_1.add(btnNewButton);
         
         JButton btnAddUsers = new JButton("Add Suppliers");
+        btnAddUsers.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		addSupplier supplier = new addSupplier();
+        		supplier.setVisible(true);
+        		
+        	}
+        });
         btnAddUsers.setForeground(new Color(0, 128, 255));
         btnAddUsers.setFont(new Font("Times New Roman", Font.BOLD, 20));
         btnAddUsers.setBounds(68, 184, 208, 33);
