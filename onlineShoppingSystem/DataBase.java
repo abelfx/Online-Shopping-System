@@ -28,7 +28,7 @@ public class DataBase {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/onlineshoppingsystem", 
-                    "root", "Ab12el34te56sf78@");
+                    "root", "");
 
             Statement state = con.createStatement();
             ResultSet set = state.executeQuery("SELECT Name, Price FROM items");
